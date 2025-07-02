@@ -1,4 +1,4 @@
-package com.ai.eva_01;
+package com.ai.eva_01.chat;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
-public class OpenAiController {
-
+public class ChatController {
     private final ChatClient chatClient;
-
-    public OpenAiController(ChatClient.Builder builder) {
+    public ChatController(ChatClient.Builder builder) {
         this.chatClient = builder.build();
     }
 
@@ -19,6 +17,7 @@ public class OpenAiController {
         return chatClient.prompt()
                 .system("""
                         All your answers should be in Spanish.
+                        Text should be short and concise.
                         """)
                 .user(""" 
                         Tell me a easy way to earn money with Java and Spring.
